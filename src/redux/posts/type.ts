@@ -1,0 +1,31 @@
+/** @format */
+
+export enum Status {
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
+
+export type Posts = {
+  nickname: string;
+  _id: string;
+  realName: string;
+  originDescription: string;
+  superpowers: string;
+  catchPhrase: string;
+  viewsCount: number;
+  createdAt: string;
+  user: {
+    fullName: string;
+    email: string;
+    avatarUrl: string;
+    createdAt: string;
+    _id: string;
+  };
+  imageUrl: string;
+};
+
+export interface PostsSliceState {
+  posts: Posts[];
+  statusPosts: Status;
+}
