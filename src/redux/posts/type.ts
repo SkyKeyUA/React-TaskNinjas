@@ -28,4 +28,15 @@ export type Posts = {
 export interface PostsSliceState {
   posts: Posts[];
   statusPosts: Status;
+  totalPages: number;
+  currentPage: number;
+}
+
+export type SearchPostsParams = {
+  currentPage: string;
+};
+export interface PostsPages {
+  posts: Posts[];
+  totalPages: number;
+  currentPage: number;
 }

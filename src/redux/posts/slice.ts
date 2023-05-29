@@ -1,12 +1,14 @@
 /** @format */
 
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { fetchPosts, fetchRemovePost } from './asyncActions';
+import { fetchPostsPages, fetchRemovePost } from './asyncActions';
 import { Posts, PostsSliceState, Status } from './type';
 
 const initialState: PostsSliceState = {
   posts: [],
   statusPosts: Status.LOADING,
+  totalPages: 1,
+  currentPage: 1,
 };
 
 const postsSlice = createSlice({
@@ -16,20 +18,47 @@ const postsSlice = createSlice({
     setPosts(state, action: PayloadAction<Posts[]>) {
       state.posts = action.payload;
     },
+    setTotalPages(state, action: PayloadAction<number>) {
+      state.totalPages = action.payload;
+    },
+    setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchPosts.pending, (state) => {
+    //  builder.addCase(fetchPosts.pending, (state) => {
+    //    state.posts = [];
+    //    state.statusPosts = Status.LOADING;
+    //    console.log('The data is sending');
+    //  });
+    //  builder.addCase(fetchPosts.fulfilled, (state, action) => {
+    //    state.posts = action.payload;
+    //    state.statusPosts = Status.SUCCESS;
+    //    console.log(state, 'All Good');
+    //  });
+    //  builder.addCase(fetchPosts.rejected, (state) => {
+    //    state.posts = [];
+    //    state.statusPosts = Status.ERROR;
+    //    console.log('Was Error');
+    //  });
+    builder.addCase(fetchPostsPages.pending, (state) => {
       state.posts = [];
+      state.currentPage = 1;
+      state.totalPages = 1;
       state.statusPosts = Status.LOADING;
       console.log('The data is sending');
     });
-    builder.addCase(fetchPosts.fulfilled, (state, action) => {
-      state.posts = action.payload;
+    builder.addCase(fetchPostsPages.fulfilled, (state, action) => {
+      state.posts = action.payload.posts;
+      state.currentPage = action.payload.currentPage;
+      state.totalPages = action.payload.totalPages;
       state.statusPosts = Status.SUCCESS;
       console.log(state, 'All Good');
     });
-    builder.addCase(fetchPosts.rejected, (state) => {
+    builder.addCase(fetchPostsPages.rejected, (state) => {
       state.posts = [];
+      state.currentPage = 1;
+      state.totalPages = 1;
       state.statusPosts = Status.ERROR;
       console.log('Was Error');
     });
@@ -39,6 +68,6 @@ const postsSlice = createSlice({
   },
 });
 
-export const { setPosts } = postsSlice.actions;
+export const { setPosts, setTotalPages, setCurrentPage } = postsSlice.actions;
 
 export default postsSlice.reducer;
