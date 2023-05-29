@@ -7,8 +7,8 @@ import { Posts, PostsSliceState, Status } from './type';
 const initialState: PostsSliceState = {
   posts: [],
   statusPosts: Status.LOADING,
-  totalPages: 1,
-  currentPage: 1,
+  totalPages: 0,
+  currentPage: 0,
 };
 
 const postsSlice = createSlice({
