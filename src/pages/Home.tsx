@@ -52,7 +52,7 @@ export const Home: React.FC = () => {
   React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1)) as unknown as SearchPostsParams;
-      const currentPage = Number(params.currentPage) || 1;
+      const currentPage = Number(params.currentPage);
       dispatch(setCurrentPage(currentPage));
       isSearch.current = true;
     }

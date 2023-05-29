@@ -43,8 +43,6 @@ const postsSlice = createSlice({
     //  });
     builder.addCase(fetchPostsPages.pending, (state) => {
       state.posts = [];
-      state.currentPage = 1;
-      state.totalPages = 1;
       state.statusPosts = Status.LOADING;
       console.log('The data is sending');
     });
@@ -57,8 +55,6 @@ const postsSlice = createSlice({
     });
     builder.addCase(fetchPostsPages.rejected, (state) => {
       state.posts = [];
-      state.currentPage = 1;
-      state.totalPages = 1;
       state.statusPosts = Status.ERROR;
       console.log('Was Error');
     });
