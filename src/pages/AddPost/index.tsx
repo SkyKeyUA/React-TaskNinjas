@@ -26,6 +26,7 @@ export const AddPost: React.FC = () => {
   const [catchPhrase, setCatchPhrase] = React.useState('');
   const [imageUrl, setImageUrl] = React.useState('');
   const inputFileRef = React.useRef<HTMLInputElement>(null);
+  const imageUrlPost = `${process.env.REACT_APP_API_URL}${imageUrl}`;
 
   const isEditing = Boolean(id);
 
@@ -124,7 +125,7 @@ export const AddPost: React.FC = () => {
           <Button variant="contained" color="error" onClick={onClickRemoveImage}>
             Delete
           </Button>
-          <img className={styles.image} src={`http://localhost:7777${imageUrl}`} alt="Uploaded" />
+          <img className={styles.image} src={imageUrlPost} alt="Uploaded" />
         </>
       )}
       <br />

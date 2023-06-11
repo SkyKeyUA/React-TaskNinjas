@@ -30,14 +30,11 @@ export const Home: React.FC = () => {
 
   console.log(data?.userData?._id);
   const getPosts = () => {
-    const axiosItems = async () => {
-      dispatch(
-        fetchPostsPages({
-          currentPage: String(currentPage),
-        }),
-      );
-    };
-    axiosItems();
+    dispatch(
+      fetchPostsPages({
+        currentPage: String(currentPage),
+      }),
+    );
     window.scrollTo(0, 0);
   };
   React.useEffect(() => {
@@ -81,23 +78,26 @@ export const Home: React.FC = () => {
         <Grid xs={8} item>
           {statusPosts === 'loading'
             ? skeletons
-            : posts.map((obj: any, index) => (
-                <Post
-                  key={index}
-                  id={obj._id}
-                  nickname={obj.nickname}
-                  realName={obj.realName}
-                  originDescription={obj.originDescription}
-                  superpowers={obj.superpowers}
-                  catchPhrase={obj.catchPhrase}
-                  imageUrl={obj.imageUrl ? `http://localhost:7777${obj.imageUrl}` : ''}
-                  user={obj.user}
-                  createdAt={new Date(obj.createdAt)}
-                  viewsCount={obj.viewsCount}
-                  commentsCount={2}
-                  isEditable={data?.userData?._id === obj.user._id}
-                />
-              ))}
+            : posts.map((obj: any, index) => {
+                const imageUrl = `${process.env.REACT_APP_API_URL}${obj.imageUrl}`;
+                return (
+                  <Post
+                    key={index}
+                    id={obj._id}
+                    nickname={obj.nickname}
+                    realName={obj.realName}
+                    originDescription={obj.originDescription}
+                    superpowers={obj.superpowers}
+                    catchPhrase={obj.catchPhrase}
+                    imageUrl={obj.imageUrl ? imageUrl : ''}
+                    user={obj.user}
+                    createdAt={new Date(obj.createdAt)}
+                    viewsCount={obj.viewsCount}
+                    commentsCount={2}
+                    isEditable={data?.userData?._id === obj.user._id}
+                  />
+                );
+              })}
           <Pagination
             totalPages={totalPages}
             currentPage={currentPage}

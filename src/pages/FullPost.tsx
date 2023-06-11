@@ -32,6 +32,7 @@ type PostProps = {
 export const FullPost: React.FC = () => {
   const [data, setData] = React.useState<PostProps>();
   const { id } = useParams();
+  const imageUrl = `${process.env.REACT_APP_API_URL}${data?.imageUrl}`;
   React.useEffect(() => {
     axios
       .get(`/posts/${id}`)
@@ -55,7 +56,7 @@ export const FullPost: React.FC = () => {
         originDescription={data.originDescription}
         superpowers={data.superpowers}
         catchPhrase={data.catchPhrase}
-        imageUrl={data.imageUrl ? `http://localhost:7777${data.imageUrl}` : ''}
+        imageUrl={data.imageUrl ? imageUrl : ''}
         user={data.user}
         createdAt={new Date(data.createdAt)}
         viewsCount={data.viewsCount}
