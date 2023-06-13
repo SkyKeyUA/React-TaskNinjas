@@ -26,32 +26,15 @@ const postsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    //  builder.addCase(fetchPosts.pending, (state) => {
-    //    state.posts = [];
-    //    state.statusPosts = Status.LOADING;
-    //    console.log('The data is sending');
-    //  });
-    //  builder.addCase(fetchPosts.fulfilled, (state, action) => {
-    //    state.posts = action.payload;
-    //    state.statusPosts = Status.SUCCESS;
-    //    console.log(state, 'All Good');
-    //  });
-    //  builder.addCase(fetchPosts.rejected, (state) => {
-    //    state.posts = [];
-    //    state.statusPosts = Status.ERROR;
-    //    console.log('Was Error');
-    //  });
     builder.addCase(fetchPostsPages.pending, (state) => {
       state.posts = [];
       state.statusPosts = Status.LOADING;
-      console.log('The data is sending');
     });
     builder.addCase(fetchPostsPages.fulfilled, (state, action) => {
       state.posts = action.payload.posts;
       state.currentPage = action.payload.currentPage;
       state.totalPages = action.payload.totalPages;
       state.statusPosts = Status.SUCCESS;
-      console.log(state, 'All Good');
     });
     builder.addCase(fetchPostsPages.rejected, (state) => {
       state.posts = [];

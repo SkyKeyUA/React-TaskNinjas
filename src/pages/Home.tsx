@@ -27,8 +27,6 @@ export const Home: React.FC = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
   const { posts, statusPosts, totalPages, currentPage } = useSelector(selectPostsData);
-
-  console.log(data?.userData?._id);
   const getPosts = () => {
     dispatch(
       fetchPostsPages({
@@ -67,7 +65,6 @@ export const Home: React.FC = () => {
   const onChagnePage = (page: number) => {
     dispatch(setCurrentPage(page));
   };
-  console.log(posts, currentPage, totalPages);
   return (
     <>
       <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">

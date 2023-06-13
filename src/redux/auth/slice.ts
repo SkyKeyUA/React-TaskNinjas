@@ -20,12 +20,10 @@ const authSlice = createSlice({
     builder.addCase(fetchAuth.pending, (state) => {
       state.data = null;
       state.statusAuth = Status.LOADING;
-      console.log('The data is sending');
     });
     builder.addCase(fetchAuth.fulfilled, (state, action) => {
       state.data = action.payload;
       state.statusAuth = Status.SUCCESS;
-      console.log(state, 'All Good');
     });
     builder.addCase(fetchAuth.rejected, (state) => {
       state.data = null;
@@ -35,12 +33,10 @@ const authSlice = createSlice({
     builder.addCase(fetchAuthMe.pending, (state) => {
       state.data = null;
       state.statusAuth = Status.LOADING;
-      console.log('The data is sending');
     });
     builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
       state.data = action.payload;
       state.statusAuth = Status.SUCCESS;
-      console.log(state, 'All Good');
     });
     builder.addCase(fetchAuthMe.rejected, (state) => {
       state.data = null;
@@ -50,12 +46,10 @@ const authSlice = createSlice({
     builder.addCase(fetchRegister.pending, (state) => {
       state.data = null;
       state.statusAuth = Status.LOADING;
-      console.log('The data is sending');
     });
     builder.addCase(fetchRegister.fulfilled, (state, action) => {
       state.data = action.payload;
       state.statusAuth = Status.SUCCESS;
-      console.log(state, 'All Good');
     });
     builder.addCase(fetchRegister.rejected, (state) => {
       state.data = null;
