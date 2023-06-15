@@ -1,8 +1,6 @@
 /** @format */
 
 import React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
 import qs from 'qs';
 import { useSelector } from 'react-redux';
@@ -67,10 +65,6 @@ export const Home: React.FC = () => {
   };
   return (
     <>
-      <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
-        <Tab label="New" />
-        <Tab label="Popular" />
-      </Tabs>
       <Grid container spacing={4}>
         <Grid xs={8} item>
           {statusPosts === 'loading'
@@ -90,7 +84,7 @@ export const Home: React.FC = () => {
                     user={obj.user}
                     createdAt={new Date(obj.createdAt)}
                     viewsCount={obj.viewsCount}
-                    commentsCount={2}
+                    commentsCount={0}
                     isEditable={data?.userData?._id === obj.user._id}
                   />
                 );

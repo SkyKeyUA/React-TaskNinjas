@@ -4,7 +4,6 @@ import React from 'react';
 
 import { Post } from '../components/Post';
 import { Index } from '../components/AddComment';
-import { CommentsBlock } from '../components/CommentsBlock';
 import { useParams } from 'react-router-dom';
 import axios from '../axios';
 import { PostSkeleton } from '../components/Post/Skeleton';
@@ -60,30 +59,10 @@ export const FullPost: React.FC = () => {
         user={data.user}
         createdAt={new Date(data.createdAt)}
         viewsCount={data.viewsCount}
-        commentsCount={3}
+        commentsCount={0}
         isFullPost>
         <ReactMarkdown children={data.text} />
       </Post>
-      <CommentsBlock
-        items={[
-          {
-            user: {
-              fullName: 'Van Vong',
-              avatarUrl: '/img/users/1.png',
-            },
-            text: 'This is a test commentary',
-          },
-          {
-            user: {
-              fullName: 'Ivan Ivanov',
-              avatarUrl: '/img/users/2.png',
-            },
-            text: 'When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top',
-          },
-        ]}
-        isLoading={false}>
-        <Index />
-      </CommentsBlock>
     </>
   );
 };
