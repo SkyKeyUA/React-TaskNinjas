@@ -9,14 +9,11 @@ import { useForm } from 'react-hook-form';
 
 import styles from './Login.module.scss';
 import { useAppDispatch } from '../../redux/store';
-import { fetchAuth, fetchAuthMe } from '../../redux/auth/asyncActions';
-import { useSelector } from 'react-redux';
-import { selectIsAuth } from '../../redux/auth/selectors';
+import { fetchAuth } from '../../redux/auth/asyncActions';
 import { Navigate } from 'react-router-dom';
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
-  const isAuth = useSelector(selectIsAuth);
   const {
     register,
     handleSubmit,
@@ -31,18 +28,18 @@ export const Login: React.FC = () => {
   });
 
   const onSubmit = async (user: { email: string; password: string }) => {
-    const data = await dispatch(fetchAuth(user));
-    if (!data.payload) {
-      return alert('Failed to log in');
-    }
-    if ('token' in data.payload) {
-      window.localStorage.setItem('token', data.payload.token);
-    }
+    //  const data = await dispatch(fetchAuth(user));
+    //  if (!data.payload) {
+    //    return alert('Failed to log in');
+    //  }
+    //  if ('token' in data.payload) {
+    //    window.localStorage.setItem('token', data.payload.token);
+    //  }
   };
-  if (isAuth) {
-    dispatch(fetchAuthMe());
-    return <Navigate to="/" />;
-  }
+  //   if (isAuth) {
+  //     dispatch(fetchAuthMe());
+  //     return <Navigate to="/" />;
+  //   }
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">

@@ -5,15 +5,8 @@ import { Routes, Route } from 'react-router-dom';
 
 import { Header } from './components';
 import { Home, FullPost, Registration, AddPost, Login } from './pages';
-import { useAppDispatch } from './redux/store';
-import { fetchAuthMe } from './redux/auth/asyncActions';
-import React from 'react';
 
 function App() {
-  const dispatch = useAppDispatch();
-  React.useEffect(() => {
-    dispatch(fetchAuthMe());
-  }, []);
   return (
     <>
       <Header />

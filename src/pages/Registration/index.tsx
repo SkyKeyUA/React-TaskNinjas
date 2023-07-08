@@ -12,7 +12,7 @@ import { useAppDispatch } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { selectIsAuth } from '../../redux/auth/selectors';
 import { useForm } from 'react-hook-form';
-import { fetchAuthMe, fetchRegister } from '../../redux/auth/asyncActions';
+import { fetchRegister } from '../../redux/auth/asyncActions';
 import { Navigate } from 'react-router-dom';
 
 export const Registration: React.FC = () => {
@@ -41,10 +41,10 @@ export const Registration: React.FC = () => {
       window.localStorage.setItem('token', data.payload.token);
     }
   };
-  if (isAuth) {
-    dispatch(fetchAuthMe());
-    return <Navigate to="/" />;
-  }
+  //   if (isAuth) {
+  //     dispatch(fetchAuthMe());
+  //     return <Navigate to="/" />;
+  //   }
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
