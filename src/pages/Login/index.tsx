@@ -10,10 +10,13 @@ import { useForm } from 'react-hook-form';
 import styles from './Login.module.scss';
 import { useAppDispatch } from '../../redux/store';
 import { fetchAuth } from '../../redux/auth/asyncActions';
+import { useSelector } from 'react-redux';
+import { selectAuthData } from '../../redux/auth/selectors';
 import { Navigate } from 'react-router-dom';
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { isAuth } = useSelector(selectAuthData);
   const {
     register,
     handleSubmit,
@@ -28,18 +31,11 @@ export const Login: React.FC = () => {
   });
 
   const onSubmit = async (user: { email: string; password: string }) => {
-    //  const data = await dispatch(fetchAuth(user));
-    //  if (!data.payload) {
-    //    return alert('Failed to log in');
-    //  }
-    //  if ('token' in data.payload) {
-    //    window.localStorage.setItem('token', data.payload.token);
-    //  }
+    dispatch(fetchAuth(user));
   };
-  //   if (isAuth) {
-  //     dispatch(fetchAuthMe());
-  //     return <Navigate to="/" />;
-  //   }
+  if (isAuth) {
+    return <Navigate to="/" />;
+  }
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">

@@ -14,12 +14,13 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
+      localStorage.removeItem('token');
       state.data = null;
       state.isAuth = false;
     },
     setUser: (state, action: PayloadAction<Auth | null>) => {
       state.data = action.payload;
-      state.isAuth = action.payload !== null;
+      state.isAuth = true;
     },
   },
   extraReducers: (builder) => {
@@ -44,6 +45,7 @@ const authSlice = createSlice({
     builder.addCase(fetchRegister.fulfilled, (state, action) => {
       state.data = action.payload;
       state.statusAuth = Status.SUCCESS;
+      state.isAuth = true;
     });
     builder.addCase(fetchRegister.rejected, (state) => {
       state.data = null;

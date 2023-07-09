@@ -10,14 +10,14 @@ import Avatar from '@mui/material/Avatar';
 import styles from './Login.module.scss';
 import { useAppDispatch } from '../../redux/store';
 import { useSelector } from 'react-redux';
-import { selectIsAuth } from '../../redux/auth/selectors';
+import { selectAuthData } from '../../redux/auth/selectors';
 import { useForm } from 'react-hook-form';
 import { fetchRegister } from '../../redux/auth/asyncActions';
 import { Navigate } from 'react-router-dom';
 
 export const Registration: React.FC = () => {
   const dispatch = useAppDispatch();
-  const isAuth = useSelector(selectIsAuth);
+  const { isAuth } = useSelector(selectAuthData);
   const {
     register,
     handleSubmit,
@@ -33,18 +33,11 @@ export const Registration: React.FC = () => {
   });
 
   const onSubmit = async (user: { fullName: string; email: string; password: string }) => {
-    const data = await dispatch(fetchRegister(user));
-    if (!data.payload) {
-      return alert('Failed to register');
-    }
-    if ('token' in data.payload) {
-      window.localStorage.setItem('token', data.payload.token);
-    }
+    dispatch(fetchRegister(user));
   };
-  //   if (isAuth) {
-  //     dispatch(fetchAuthMe());
-  //     return <Navigate to="/" />;
-  //   }
+  if (isAuth) {
+    return <Navigate to="/" />;
+  }
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">

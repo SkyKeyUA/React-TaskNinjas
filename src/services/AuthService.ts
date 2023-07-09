@@ -11,11 +11,19 @@ class AuthService {
   }): Promise<AxiosResponse<AuthResponse>> {
     return $api.post<AuthResponse>('auth/login', user);
   }
-  static async registration(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-    return $api.post<AuthResponse>('auth/registration', { email, password });
+  static async registration(user: {
+    email: string;
+    password: string;
+  }): Promise<AxiosResponse<AuthResponse>> {
+    return $api.post<AuthResponse>('auth/registration', user);
   }
   static async logout(): Promise<void> {
-    return $api.post('/logout');
+    return $api.post('auth/logout');
+  }
+  static async auth(): Promise<AxiosResponse<AuthResponse>> {
+    return $api.get<AuthResponse>('auth/me', {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    });
   }
 }
 

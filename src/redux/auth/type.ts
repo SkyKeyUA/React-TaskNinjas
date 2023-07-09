@@ -20,7 +20,7 @@ export interface AuthSliceState {
   statusAuth: Status;
   isAuth: boolean;
 }
-export interface AuthResponse {
+export interface AuthResponse extends Auth {
   accessToken: string;
   refreshToken: string;
   user: Auth;
