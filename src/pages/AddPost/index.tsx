@@ -4,7 +4,7 @@ import React from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectIsAuth } from '../../redux/auth/selectors';
-import axios from '../../axios';
+import axios from '../../api';
 
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';

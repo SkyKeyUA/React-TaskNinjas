@@ -1,7 +1,7 @@
 /** @format */
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../axios';
+import axios from '../../api';
 import { PostsPages, SearchPostsParams } from './type';
 
 export const fetchPostsPages = createAsyncThunk<PostsPages, SearchPostsParams>(

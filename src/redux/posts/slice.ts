@@ -39,7 +39,7 @@ const postsSlice = createSlice({
     builder.addCase(fetchPostsPages.rejected, (state) => {
       state.posts = [];
       state.statusPosts = Status.ERROR;
-      console.log('Was Error');
+      console.log('There was an error');
     });
     builder.addCase(fetchRemovePost.pending, (state, action) => {
       state.posts = state.posts.filter((obj) => obj._id !== action.meta.arg);

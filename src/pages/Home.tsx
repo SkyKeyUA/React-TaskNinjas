@@ -85,7 +85,7 @@ export const Home: React.FC = () => {
                     createdAt={new Date(obj.createdAt)}
                     viewsCount={obj.viewsCount}
                     commentsCount={0}
-                    isEditable={data?.userData?._id === obj.user._id}
+                    isEditable={data?._id === obj.user._id}
                   />
                 );
               })}
