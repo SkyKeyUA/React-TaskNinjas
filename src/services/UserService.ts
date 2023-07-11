@@ -6,7 +6,7 @@ import { Auth } from '../redux/auth/type';
 
 class UserService {
   static fetchUsers(): Promise<AxiosResponse<Auth[]>> {
-    return $api.get<Auth[]>('/users');
+    return $api.get<Auth[]>('auth/users');
   }
 }
 

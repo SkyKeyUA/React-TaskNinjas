@@ -8,8 +8,6 @@ import { Home, FullPost, Registration, AddPost, Login } from './pages';
 import { useAppDispatch } from './redux/store';
 import { fetchAuthMe } from './redux/auth/asyncActions';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectAuthData } from './redux/auth/selectors';
 
 function App() {
   const dispatch = useAppDispatch();

@@ -19,7 +19,6 @@ export const Header: React.FC = () => {
       dispatch(logout());
     }
   };
-
   return (
     <div className={styles.root}>
       <Container maxWidth="lg">
