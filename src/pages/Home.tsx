@@ -71,6 +71,7 @@ export const Home: React.FC = () => {
             ? skeletons
             : posts.map((obj: any, index) => {
                 const imageUrl = `${process.env.REACT_APP_API_URL}${obj.imageUrl}`;
+                const isEditable = obj.user._id === data?.id;
                 return (
                   <Post
                     key={index}
@@ -85,7 +86,7 @@ export const Home: React.FC = () => {
                     createdAt={new Date(obj.createdAt)}
                     viewsCount={obj.viewsCount}
                     commentsCount={0}
-                    isEditable={data?._id === obj.user._id}
+                    isEditable={isEditable}
                   />
                 );
               })}

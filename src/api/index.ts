@@ -1,7 +1,6 @@
 /** @format */
 
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { error } from 'console';
 import { AuthResponse } from '../redux/auth/type';
 
 const baseURL = process.env.REACT_APP_API_URL;

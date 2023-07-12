@@ -11,7 +11,7 @@ export type Auth = {
   createdAt: string;
   email: string;
   fullName: string;
-  _id: string;
+  id: string;
   isActivated: boolean;
 };
 
@@ -23,5 +23,5 @@ export interface AuthSliceState {
 export interface AuthResponse extends Auth {
   accessToken: string;
   refreshToken: string;
-  user: Auth;
+  userDto: Auth;
 }
