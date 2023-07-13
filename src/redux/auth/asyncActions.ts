@@ -10,7 +10,6 @@ export const fetchAuth = createAsyncThunk(
   async (user: { email: string; password: string }, { dispatch, rejectWithValue }) => {
     try {
       const response = await AuthService.login(user);
-      console.log(response);
       dispatch(setUser(response.data.userDto));
       localStorage.setItem('token', response.data.accessToken);
       return response.data;
@@ -30,7 +29,6 @@ export const fetchRegister = createAsyncThunk(
   async (user: { email: string; password: string }, { dispatch, rejectWithValue }) => {
     try {
       const response = await AuthService.registration(user);
-      console.log(response);
       localStorage.setItem('token', response.data.accessToken);
       dispatch(setUser(response.data.userDto));
       return response.data;
@@ -49,7 +47,6 @@ export const fetchLogout = createAsyncThunk(
   async (_, { dispatch, rejectWithValue }) => {
     try {
       const response = await AuthService.logout();
-      console.log(response);
       localStorage.removeItem('token');
       dispatch(logout());
       return response;
@@ -68,7 +65,6 @@ export const fetchAuthMe = createAsyncThunk(
   async (_, { dispatch, rejectWithValue }) => {
     try {
       const response = await AuthService.auth();
-      console.log(response);
       dispatch(setUser(response.data.userDto));
       localStorage.setItem('token', response.data.accessToken);
       return response.data.userDto;
