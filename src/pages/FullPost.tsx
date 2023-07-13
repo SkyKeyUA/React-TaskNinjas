@@ -3,7 +3,6 @@
 import React from 'react';
 
 import { Post } from '../components/Post';
-import { Index } from '../components/AddComment';
 import { useParams } from 'react-router-dom';
 import axios from '../api';
 import { PostSkeleton } from '../components/Post/Skeleton';
