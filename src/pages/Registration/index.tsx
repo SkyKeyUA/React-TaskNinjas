@@ -12,7 +12,7 @@ import { useAppDispatch } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { selectAuthData } from '../../redux/auth/selectors';
 import { useForm } from 'react-hook-form';
-import { fetchRegister } from '../../redux/auth/asyncActions';
+import { fetchAuthMe, fetchRegister } from '../../redux/auth/asyncActions';
 import { Navigate } from 'react-router-dom';
 
 export const Registration: React.FC = () => {
@@ -33,7 +33,8 @@ export const Registration: React.FC = () => {
   });
 
   const onSubmit = async (user: { fullName: string; email: string; password: string }) => {
-    dispatch(fetchRegister(user));
+    await dispatch(fetchRegister(user));
+    dispatch(fetchAuthMe());
   };
   if (isAuth) {
     return <Navigate to="/" />;
